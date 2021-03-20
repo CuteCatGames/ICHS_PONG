@@ -87,7 +87,7 @@ while True:
     board.onkeypress(player2down, "k")
     turtle.listen()
 
-    if ball.ycor() == -300 :
+    if ball.ycor() == -250 :
         if ball.heading() >=180:
             heading = ball.heading()
             heading = heading + 95
@@ -98,7 +98,7 @@ while True:
             ball.seth(heading)
 
 
-    if ball.ycor() == 300 :
+    if ball.ycor() == 250 :
         if ball.heading() >= 0 and ball.heading() < 90:
             heading = ball.heading()
             heading = heading + 95
