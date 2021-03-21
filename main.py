@@ -44,15 +44,15 @@ def player2up():
 def player2down():
     player2.bk(10)
 
-ball.seth(175)
+ball.seth(25)
 
 while True:
     # ball movement
     ball.fd(1)
 
-    if ball.distance(player2) <= 15 or ball.distance(player1) <= 15:
+    if ball.distance(player2) <= 15 or ball.distance(player1) <= 15 or ball.ycor() >= 250 or ball.ycor() <= -250:
         theta = ball.heading()
-        randval = random.randint(0, 30)
+        randval = random.randint(0, 10)
         posneg = random.getrandbits(1)
 
         if posneg == 0:
@@ -60,16 +60,26 @@ while True:
         elif posneg == 1:
             mod = 90 - randval
 
-        if theta >= 0 and theta < 90:
-            theta = theta - mod
-        elif theta >= 90 and theta < 180:
-            theta = theta + mod
-        elif theta >= 180 and theta < 270:
-            theta = theta - mod
-        elif theta >= 270 and theta < 360:
-            theta = theta + mod
+        if theta >= 270 or theta <= 90:
+            if theta >= 270:
+                thetaIncident = theta - 270
+                thetaReflection = 180 - thetaIncident
 
-        theta = theta + mod
+            elif theta <= 90:
+                thetaIncident = 90 - theta
+                thetaReflection = 180 + thetaIncident
+
+        elif theta > 90 and theta < 270:
+            if theta > 90 and theta <=180:
+                thetaIncident = theta - 90
+                thetaReflection = 0 + thetaIncident
+
+            elif theta > 180 and theta < 270:
+                theta = 270 - theta
+                thetaReflection = 270 + thetaIncident
+
+        ball.seth(thetaReflection)
+
         # else:
         # randval = random.randint(0, 30)
         # posneg = random.getrandbits(1)
@@ -79,7 +89,6 @@ while True:
         # mod = 180 - randval
         # theta = theta + mod
 
-        ball.seth(theta)
 
     board.onkeypress(player1up, "w")
     board.onkeypress(player1down, "s")
