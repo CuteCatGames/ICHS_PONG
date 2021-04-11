@@ -22,6 +22,7 @@ paddleB = Paddle(WHITE, 10, 100)
 paddleB.rect.x = 670
 paddleB.rect.y = 200
 
+
 ball = Ball(WHITE, 10, 10)
 ball.rect.x = 345
 ball.rect.y = 195
@@ -43,6 +44,8 @@ clock = pygame.time.Clock()
 # Initialise player scores
 scoreA = 0
 scoreB = 0
+
+
 
 # -------- Main Program Loop -----------
 while carryOn:
@@ -72,9 +75,15 @@ while carryOn:
     if ball.rect.x >= 690:
         scoreA += 1
         ball.velocity[0] = -ball.velocity[0]
+        ball.rect.x = 350
+        ball.rect.y = 250
+
     if ball.rect.x <= 0:
         scoreB += 1
         ball.velocity[0] = -ball.velocity[0]
+        ball.rect.x = 350
+        ball.rect.y = 250
+        
     if ball.rect.y > 490:
         ball.velocity[1] = -ball.velocity[1]
     if ball.rect.y < 0:
