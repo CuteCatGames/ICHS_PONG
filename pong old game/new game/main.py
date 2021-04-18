@@ -83,7 +83,7 @@ while carryOn:
         ball.velocity[0] = -ball.velocity[0]
         ball.rect.x = 350
         ball.rect.y = 250
-        
+
     if ball.rect.y > 490:
         ball.velocity[1] = -ball.velocity[1]
     if ball.rect.y < 0:
